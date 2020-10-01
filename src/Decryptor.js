@@ -1,4 +1,4 @@
-const nacl = require('libsodium-wrappers')
+const nacl = require('libsodium-wrappers');
 
 module.exports = (key) => {
     return Object.freeze({
