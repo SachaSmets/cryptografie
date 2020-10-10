@@ -1,15 +1,14 @@
 const nacl = require('libsodium-wrappers');
 
-module.exports = () => {
+module.exports = async () => {
+    
+    await nacl.ready;
+
+    const {publicKey, privateKey} = nacl.crypto_sign_keypair();
     return Object.freeze({
-        verifyingKey: () => {
-            let privatekey;
-            nacl.crypto_sign_SECRETKEYBYTES(privatekey);
-        },
-        sign: () => {
-            let signedmessage;
-            nacl.crypto_sign(signedmessage, verifyingKey.privatekey);
-            return signedmessage;
+        verifyingKey: publicKey,
+        sign: (msg) => {
+            return nacl.crypto_sign(msg, privateKey);
         }
-    })
+    });
 }
