@@ -1,3 +1,4 @@
+  
 const nacl = require('libsodium-wrappers')
 const Signature = require('../src/Signature')
 
